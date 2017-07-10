@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MONAD</title>
+
+    <meta name="author" content="MONAD Demogroup"/>
+    <meta name="description" content="MONAD: Coming soon..."/>
+
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
+    <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- hey there :) -->
+
+<header>
+    <h1>MONAD</h1>
+</header>
+
+<h2 class="header productions-header">PRESENTS</h2>
+
+<section class="productions">
+    <div id="prod-scroll-box"><div class="prod-item"><div class="production coming-soon">
+        <img src="images/not-a-real-demo.png" />
+        <p>Coming Soon</p>
+    </div></div></div>
+    <!--<div class="production">
+        <img src="" />
+        <div class="links"></div>
+        <p>Name</p>
+        <p>PARTY YEAR</p>
+    </div>-->
+
+    <a id="prod-left-scroll" href="#"><img src="images/chevron-left.png"/></a>
+    <a id="prod-right-scroll" href="#"><img src="images/chevron-right.png"/></a>
+</section>
+
+<h2 class="header starring-header">STARRING</h2>
+
+<div class="starring">
+    <div>
+        <p><strong>CODE</strong></p>
+        <p>cpdt</p>
+    </div>
+    <div>
+        <p><strong>MUSIC</strong></p>
+        <p>firewood</p>
+    </div>
+</div>
+
+<footer>
+    <p><a href="https://twitter.com/monad_group" target="_blank">TWITTER</a> · <a href="https://youtube.com/monadgroup" target="_blank">YOUTUBE</a> · <a href="https://github.com/monadgroup" target="_blank">GITHUB</a> · <a href="https://demozoo.org/groups/71619/" target="_blank">DEMOZOO</a> · <a href="mailto:monaddemo@gmail.com" target="_blank">CONTACT</a></p>
+    <p>&copy; 2017</p>
+</footer>
+
+<script>
+
+var $leftScroll = document.getElementById('prod-left-scroll');
+var $rightScroll = document.getElementById('prod-right-scroll');
+var $scrollBox = document.getElementById('prod-scroll-box');
+var baseMomentum = 0.2, fastMomentum = 3, pushMomentum = 15;
+var scrollMomentum = baseMomentum, targetMomentum = baseMomentum, left = false, right = false;
+var currentScrollPos = 0;
+
+var $primaryBox = $scrollBox.childNodes[0];
+var $secondBox = $primaryBox.cloneNode(true);
+$scrollBox.appendChild($secondBox);
+
+function updateScroll() {
+    if ($secondBox.clientWidth <= $scrollBox.clientWidth) {
+        $leftScroll.style.display = 'none';
+        $rightScroll.style.display = 'none';
+        $primaryBox.style.display = 'none';
+
+        left = false;
+        right = false;
+        scrollMomentum = baseMomentum;
+        currentScrollPos = 0;
+    } else {
+        $leftScroll.style.display = '';
+        $rightScroll.style.display = '';
+        $primaryBox.style.display = '';
+
+        if (left) targetMomentum = -fastMomentum;
+        else if (right) targetMomentum = fastMomentum;
+        else targetMomentum = baseMomentum;
+
+        currentScrollPos += scrollMomentum;
+        var boxBaseWidth = $scrollBox.childNodes[0].scrollWidth;
+        while (currentScrollPos <= 0) currentScrollPos += boxBaseWidth;
+        while (currentScrollPos > boxBaseWidth) currentScrollPos -= boxBaseWidth;
+
+        $scrollBox.scrollLeft = currentScrollPos;
+        scrollMomentum = targetMomentum + (scrollMomentum - targetMomentum) * 0.95;
+        console.log(scrollMomentum);
+    }
+
+    requestAnimationFrame(updateScroll);
+}
+updateScroll();
+
+requestAnimationFrame(updateScroll);
+
+$leftScroll.addEventListener('mousedown', function() { scrollMomentum -= pushMomentum; left = true; });
+$leftScroll.addEventListener('mouseup', function() { left = false; });
+$rightScroll.addEventListener('mousedown', function() { scrollMomentum += pushMomentum; right = true; });
+$rightScroll.addEventListener('mouseup', function() { right = false; });
+
+
+</script>
+
+</body>
+</html>
