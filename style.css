@@ -3,7 +3,8 @@ body {
     font-family: 'Oswald', sans-serif;
     color: #FFF;
     text-align: center;
-    background: black url(images/bg.png) center;
+    background: black url(images/bg.svg) center;
+    background-size: 196px 208px;
 }
 
 a:hover {
@@ -27,7 +28,7 @@ header, #left-bg, #right-bg, #bg {
 header {
     position: relative;
     margin-top: 100px;
-    background: url(images/logo.png) no-repeat top center;
+    background: url(images/logo.svg) no-repeat top center;
 }
 
 header h1 {
