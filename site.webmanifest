@@ -1,5 +1,6 @@
 {
-    "name": "",
+    "name": "Monad",
+    "short_name": "Monad",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -7,12 +8,12 @@
             "type": "image/png"
         },
         {
-            "src": "/android-chrome-384x384.png",
-            "sizes": "384x384",
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#a349a4",
+    "background_color": "#a349a4",
     "display": "standalone"
 }
